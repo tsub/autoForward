@@ -71,7 +71,7 @@ fn detect_open_port() -> Vec<ListenPort> {
             None => continue,
         };
         if ip == "*" {
-            ip = "localhost".to_string();
+            ip = "127.0.0.1".to_string();
         }
         let proto = match Protocol::decode(
             row[header
@@ -165,7 +165,7 @@ fn handle_message(
             let mut stream = TcpStream::connect(format!("{}:{}", service.ip, request.header.port))
                 .unwrap_or_else(|err| {
                     panic!(
-                        "Error: Unable to connect to Socket localhost:{}\n{err}",
+                        "Error: Unable to connect to Socket 127.0.0.1:{}\n{err}",
                         request.header.port
                     )
                 });
