@@ -72,7 +72,7 @@ whoami
 
 echo "${PORT}"
 
-/usr/local/share/auto_forward/container "${PORT}"&
+/usr/local/share/auto_forward/container "${PORT}" &> /tmp/auto_forward_container.log &
 
 echo "Container is Listening!"
 
