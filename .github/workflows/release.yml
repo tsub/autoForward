@@ -45,6 +45,6 @@ jobs:
           base-path-to-features: "./feature/src/"
           oci-registry: "ghcr.io"
           generate-docs: "true"
-          features-namespace: "MunsMan/autoForward"
+          features-namespace: ${{ github.repository }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
