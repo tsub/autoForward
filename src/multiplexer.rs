@@ -260,7 +260,7 @@ pub fn create_message(port: u16, function: Function, message: Vec<u8>) -> Messag
 }
 
 fn get_socket(port: u16) -> (TcpListener, u16) {
-    match TcpListener::bind(format!("127.0.0.1:{}", port)) {
+    match TcpListener::bind(format!("localhost:{}", port)) {
         Ok(socket) => (socket, port),
         Err(_) => get_socket(port + 1),
     }
@@ -359,10 +359,10 @@ fn handle_message(message: Message, sender: Sender<Message>) {
         let send_response = sender.clone();
         let mut request = message;
         thread::spawn(move || {
-            let mut stream = TcpStream::connect(format!("127.0.0.1:{}", request.header.port))
+            let mut stream = TcpStream::connect(format!("localhost:{}", request.header.port))
                 .expect(
                     format!(
-                        "Error: Unable to connect to Socket 127.0.0.1:{}",
+                        "Error: Unable to connect to Socket localhost:{}",
                         request.header.port
                     )
                     .as_str(),
