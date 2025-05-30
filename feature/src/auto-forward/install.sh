@@ -72,6 +72,7 @@ whoami
 
 echo "${PORT}"
 
+su "${USERNAME}" -c 'touch /tmp/auto_forward_container.log'
 /usr/local/share/auto_forward/container "${PORT}" &> /tmp/auto_forward_container.log &
 
 echo "Container is Listening!"
